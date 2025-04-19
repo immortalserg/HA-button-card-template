@@ -1,8 +1,28 @@
 # HA-button-card-template
 ![Image alt](20241618.png)
 
-
-
+минимальныя конфигурация:
+```
+type: custom:button-card
+entity: sensor.s20_5_ik_month_energy
+template: meter_template
+```
+с параметрами:
+```
+type: custom:button-card
+entity: sensor.s20_5_ik_month_energy
+template: meter_template
+styles:
+  card:
+    - "--card-width": 80px
+    - "--card-height": 60px
+  custom_fields:
+    meter:
+      - "--meter-font-size": 20px
+      - "--meter-padding": 6px 7px
+      - "--meter-width": 16px
+      - "--meter-height": 25px
+```
 ### Параметры, которые можно задавать:
 
 --card-padding — отступы для всей карточки.
