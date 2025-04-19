@@ -1,0 +1,13 @@
+type: custom:button-card
+entity: sensor.sensor_energy
+template: meter_template
+styles:
+  card:
+    - "--card-width": 80px
+    - "--card-height": 60px
+  custom_fields:
+    meter:
+      - "--meter-font-size": 20px
+      - "--meter-padding": 6px 7px
+      - "--meter-width": 16px
+      - "--meter-height": 25px
