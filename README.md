@@ -1,4 +1,5 @@
-# HA-button-card-template
+# Карточки для Home Assistant
+## Счетчик
 ![Image alt](20241618.png)
 
 ![Image alt](20241619.png)
@@ -118,7 +119,7 @@ styles:
 
 --meter-dot-background — фон точки.
 
-### Карточка энергомонитора
+## Карточка энергомонитора
 ![Image alt](20241620.png)
 ### Установка
 Необходимо чтобы был установлен [Button card](https://github.com/custom-cards/button-card). 
