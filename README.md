@@ -1,7 +1,14 @@
 # HA-button-card-template
 ![Image alt](20241618.png)
+### Установка
+Необходимо чтобы был установлен [Button card](https://github.com/custom-cards/button-card). 
 
-минимальныя конфигурация:
+Войдите в режим редактирования панели Lovelace, нажмите три точки в верхнем правом углу, выберите: "Текстовый редактор"
+
+вставьте код в начало из файла lovelace-template.yaml
+
+### Добавление карточки
+добавьте карточку, минимальныя конфигурация:
 ```
 type: custom:button-card
 entity: sensor.s20_5_ik_month_energy
