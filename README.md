@@ -117,3 +117,26 @@ styles:
 --meter-dot-color — цвет точки.
 
 --meter-dot-background — фон точки.
+
+### Карточка энергомонитора
+![Image alt](20241620.png)
+### Установка
+Необходимо чтобы был установлен [Button card](https://github.com/custom-cards/button-card). 
+
+Войдите в режим редактирования панели Lovelace, нажмите три точки в верхнем правом углу, выберите: "Текстовый редактор"
+
+вставьте код в начало из файла lovelace-template.yaml
+
+### Добавление карточки
+добавьте карточку, минимальныя конфигурация:
+```
+type: custom:button-card
+template: power_monitor_template
+entity: sensor.nt_total_energy
+name: ДКТкт
+variables:
+  voltage: sensor.nt_phase_a_voltage
+  current: sensor.nt_phase_a_current
+  power: sensor.nt_phase_a_power
+```
+
