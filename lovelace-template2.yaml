@@ -1,0 +1,90 @@
+button_card_templates:
+  power_monitor_template:
+    type: custom:button-card
+    aspect_ratio: 1/1
+    icon: mdi:lightning-bolt
+    tap_action:
+      action: more-info
+      entity: '[[[ return variables.power ]]]'
+    styles:
+      card:
+        - background-color: '#000044'
+        - border-radius: 10%
+        - padding: 10%
+        - color: ivory
+        - font-size: 12px
+        - text-shadow: 0px 0px 5px black
+        - text-transform: capitalize
+      grid:
+        - grid-template-areas: '"i par0" "n n" "par2 par2" "par3 par3" "par4 par4"'
+        - grid-template-columns: 1fr 1fr
+        - grid-template-rows: 1fr min-content min-content min-content min-content
+      name:
+        - font-weight: bold
+        - font-size: 13px
+        - color: white
+        - align-self: middle
+        - justify-self: start
+        - padding-bottom: 4px
+      img_cell:
+        - justify-content: start
+        - align-items: start
+        - margin: none
+      icon:
+        - width: 70%
+        - margin-top: '-10%'
+        - color: |
+            [[[
+              if (entity.state < 60) return 'lime';
+              if (entity.state >= 60 && entity.state < 80) return 'orange';
+              else return 'red';
+            ]]]
+      custom_fields:
+        par0:
+          - align-self: start
+          - justify-self: end
+        par2:
+          - padding-bottom: 2px
+          - align-self: middle
+          - justify-self: start
+          - '--text-color-sensor': |
+              [[[ if (states[variables.voltage].state > 248) return "red"; ]]]
+        par3:
+          - padding-bottom: 2px
+          - align-self: middle
+          - justify-self: start
+          - '--text-color-sensor': |
+              [[[ if (states[variables.current].state > 248) return "red"; ]]]
+        par4:
+          - align-self: middle
+          - justify-self: start
+          - '--text-color-sensor': |
+              [[[ if (states[variables.power].state > 80) return "red"; ]]]
+    custom_fields:
+      par0: |
+        [[[
+              let val = entity.state;
+              if (val === "unavailable" || val === "unknown") return `<span><b>???</b></span>`;
+              return `<span><b>${val}КВт</b></span>`;
+        ]]]
+      par2: |
+        [[[
+              let v = states[variables.voltage]?.state;
+              let display = (v === "unavailable" || v === "unknown") ? "???" : v + "В";
+              return `<ha-icon icon="mdi:sine-wave" style="width: 12px; height: 12px; color: deepskyblue;"></ha-icon>
+                      <span> U: <span style="color: var(--text-color-sensor);">${display}</span></span>`;
+        ]]]
+      par3: |
+        [[[
+              let i = states[variables.current]?.state;
+              let display = (i === "unavailable" || i === "unknown") ? "???" : i + "А";
+              return `<ha-icon icon="mdi:current-ac" style="width: 12px; height: 12px; color: deepskyblue;"></ha-icon>
+                      <span> &nbsp;&nbspI: <span style="color: var(--text-color-sensor);">${display}</span></span>`;
+        ]]]
+      par4: |
+        [[[
+              let p = states[variables.power]?.state;
+              let display = (p === "unavailable" || p === "unknown") ? "???" : p + "КВт";
+              return `<ha-icon icon="mdi:flash" style="width: 12px; height: 12px; color: deepskyblue;"></ha-icon>
+                      <span> P: <span style="color: var(--text-color-sensor);">${display}</span></span>`;
+        ]]]
