@@ -1,9 +1,58 @@
 button_card_templates:
-  meter_template2:
+  meter_template:
     type: custom:button-card
     show_name: false
     show_state: false
+    styles:
+      card:
+        - padding: 16px
+        - background: linear-gradient(to bottom,
+        - border: 4px solid
+        - border-radius: 10px
+        - box-shadow: 0 0 12px rgba(0, 0, 0, 0.7), inset 0 0 8px
+        - display: flex
+        - flex-direction: column
+        - justify-content: space-between
+        - align-items: center
+        - height: var(--card-height, 160px)
+        - width: var(--card-width, 180px)
+      grid:
+        - grid-template-areas: '"text1 text1" "meter meter" "text2 text2"'
+        - grid-template-columns: 1fr 1fr
+        - grid-template-rows: min-content min-content min-content
+      custom_fields:
+        text1:
+          - order: '[[[ return variables.text1_position === "top" ? 2 : 0; ]]]'
+          - font-size: '[[[ return variables.text1_size || "14px"; ]]]'
+          - color: '[[[ return variables.text1_color || "#000"; ]]]'
+          - text-align: '[[[ return variables.text1_align || "left"; ]]]'
+          - width: 100%
+          - margin-bottom: 0pt
+        meter:
+          - order: 1
+          - display: flex
+          - flex-direction: row
+          - gap: 2px
+          - font-size: var(--meter-font-size, 36px)
+          - font-weight: bold
+          - padding: var(--meter-padding, 10px 14px)
+          - border-radius: 6px
+          - box-shadow: inset 0 2px 4px
+        text2:
+          - order: '[[[ return variables.text2_position === "top" ? 0 : 2; ]]]'
+          - font-size: '[[[ return variables.text2_size || "14px"; ]]]'
+          - color: '[[[ return variables.text2_color || "#000"; ]]]'
+          - text-align: '[[[ return variables.text2_align || "right"; ]]]'
+          - width: 100%
     custom_fields:
+      text1: |
+        [[[
+          return variables.text1 || '';
+        ]]]
+      text2: |
+        [[[
+          return variables.text2 || '';
+        ]]]
       meter: |
         [[[
           let val = parseFloat(entity.state || "0").toFixed(3);
@@ -16,52 +65,28 @@ button_card_templates:
             }
           }).join('');
         ]]]
-    styles:
-      card:
-        - padding: var(--card-padding, 16px)
-        - background: var(--card-background, linear-gradient(to bottom,
-        - border: var(--card-border, 4px solid
-        - border-radius: var(--card-border-radius, 10px)
-        - box-shadow: var(--card-box-shadow, 0 0 12px rgba(0, 0, 0, 0.7), inset 0 0 8px)
-        - display: flex
-        - justify-content: center
-        - align-items: center
-        - height: var(--card-height, 130px)
-        - width: var(--card-width, 180px)
-      custom_fields:
-        meter:
-          - display: flex
-          - flex-direction: row
-          - gap: var(--meter-gap, 2px)
-          - font-size: var(--meter-font-size, 36px)
-          - color: var(--meter-color,
-          - font-weight: bold
-          - background: null
-          - padding: var(--meter-padding, 10px 14px)
-          - border-radius: var(--meter-border-radius, 6px)
-          - box-shadow: var(--meter-box-shadow, inset 0 2px 4px)
     extra_styles: |
       .meter-digit, .meter-dot {
-        background: var(--meter-background, #000);
-        color: var(--meter-color, #e6e6e6);
+        background: #000;
+        color: #e6e6e6;
         width: var(--meter-width, 34px);
         height: var(--meter-height, 50px);
         text-align: center;
         line-height: var(--meter-height, 50px);
-        margin: 0 var(--meter-margin, 1px);
-        border: var(--meter-border, 1px solid #555);
-        border-radius: var(--meter-border-radius, 4px);
+        margin: 0 1px;
+        border: 1px solid #555;
+        border-radius: 4px;
         box-shadow:
           inset 0 -2px 4px rgba(255,255,255,0.1),
           inset 0 2px 4px rgba(0,0,0,0.4),
           0 1px 1px rgba(0,0,0,0.2);
       }
       .meter-dot {
-        width: var(--meter-dot-width, 14px);
-        font-size: var(--meter-dot-font-size, 32px);
+        width: 14px;
+        font-size: 32px;
         padding-top: 2px;
-        color: var(--meter-dot-color, #ff4444);
-        background: var(--meter-dot-background, #fff);
+        color: #ff4444;
+        background: #fff;
         border: none;
         box-shadow: none;
       }
