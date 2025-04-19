@@ -1,5 +1,7 @@
 # HA-button-card-template
 ![Image alt](20241618.png)
+![Image alt](20241619.png)
+
 ### Установка
 Необходимо чтобы был установлен [Button card](https://github.com/custom-cards/button-card). 
 
