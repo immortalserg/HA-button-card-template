@@ -22,12 +22,10 @@ button_card_templates:
         - grid-template-rows: min-content min-content min-content
       custom_fields:
         text1:
-          - order: '[[[ return variables.text1_position === "top" ? 2 : 0; ]]]'
-          - font-size: '[[[ return variables.text1_size || "14px"; ]]]'
-          - color: '[[[ return variables.text1_color || "#000"; ]]]'
-          - text-align: '[[[ return variables.text1_align || "left"; ]]]'
+          - font-size: 14px
+          - color: #000
+          - text-align: "left"
           - width: 100%
-          - margin-bottom: 0pt
         meter:
           - order: 1
           - display: flex
@@ -39,10 +37,9 @@ button_card_templates:
           - border-radius: 6px
           - box-shadow: inset 0 2px 4px
         text2:
-          - order: '[[[ return variables.text2_position === "top" ? 0 : 2; ]]]'
-          - font-size: '[[[ return variables.text2_size || "14px"; ]]]'
-          - color: '[[[ return variables.text2_color || "#000"; ]]]'
-          - text-align: '[[[ return variables.text2_align || "right"; ]]]'
+          - font-size: 14px
+          - color: #000
+          - text-align: "right"
           - width: 100%
     custom_fields:
       text1: |
