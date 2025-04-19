@@ -30,9 +30,38 @@ styles:
       - "--meter-width": 16px
       - "--meter-height": 25px
 ```
+с текстом:
+```
+type: custom:button-card
+template: meter_template
+entity: sensor.s20_5_ik_month_energy
+title: Электроэнергия
+variables:
+  text1: Кухня
+  text1_color: "#00ccff"
+  text1_size: 18px
+  text1_position: top
+  text1_align: center
+  text2: кВт⋅ч
+  text2_color: "#ff8844"
+  text2_size: 16px
+  text2_position: bottom
+  text2_align: right
+styles:
+  card:
+    - padding: 6pt 6pt 6pt 6pt
+  custom_fields:
+    meter:
+      - font-size: 24px
+      - padding: 6px 8px
+      - "--meter-width": 20px
+      - "--meter-height": 30px
+```
+
+
 ### Параметры, которые можно задавать:
 
---card-padding — отступы для всей карточки.
+любые стили, плюс:
 
 --card-background — фоновый градиент или цвет карточки.
 
