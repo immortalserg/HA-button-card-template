@@ -6,16 +6,13 @@ button_card_templates:
     styles:
       card:
         - padding: 6pt 6pt 6pt 6pt
-        - background: linear-gradient(to bottom,
-        - border: 4px solid
         - border-radius: 10px
-        - box-shadow: 0 0 12px rgba(0, 0, 0, 0.7), inset 0 0 8px
         - display: flex
         - flex-direction: column
         - justify-content: space-between
         - align-items: center
-        - height: var(--card-height, 160px)
-        - width: var(--card-width, 180px)
+        - height: var(--card-height, 90px)
+        - width: var(--card-width, 240px)
       grid:
         - grid-template-areas: '"text1 text1" "meter meter" "text2 text2"'
         - grid-template-columns: 1fr 1fr
@@ -90,8 +87,7 @@ button_card_templates:
           0 1px 1px rgba(0,0,0,0.2);
       }
       .meter-dot {
-        width: 14px;
-        font-size: 32px;
+        width: 10x;
         padding-top: 2px;
         color: #ff4444;
         background: #fff;
