@@ -5,7 +5,7 @@ button_card_templates:
     show_state: false
     styles:
       card:
-        - padding: 16px
+        - padding: 6pt 6pt 6pt 6pt
         - background: linear-gradient(to bottom,
         - border: 4px solid
         - border-radius: 10px
@@ -23,23 +23,23 @@ button_card_templates:
       custom_fields:
         text1:
           - font-size: 14px
-          - color: #000
-          - text-align: "left"
+          - color: null
+          - text-align: left
           - width: 100%
         meter:
           - order: 1
           - display: flex
           - flex-direction: row
           - gap: 2px
-          - font-size: var(--meter-font-size, 36px)
+          - font-size: var(--meter-font-size, 24px)
           - font-weight: bold
-          - padding: var(--meter-padding, 10px 14px)
+          - padding: var(--meter-padding, 6px 8px)
           - border-radius: 6px
           - box-shadow: inset 0 2px 4px
         text2:
           - font-size: 14px
-          - color: #000
-          - text-align: "right"
+          - color: null
+          - text-align: right
           - width: 100%
     custom_fields:
       text1: |
@@ -52,8 +52,13 @@ button_card_templates:
         ]]]
       meter: |
         [[[
-          let val = parseFloat(entity.state || "0").toFixed(3);
-          val = val.padStart(10, '0');
+          const intDigits = Math.max(3, Math.min(6, parseInt(variables.int_digits || 6)));
+          const decDigits = Math.max(1, Math.min(3, parseInt(variables.dec_digits || 3)));
+          const totalLength = intDigits + 1 + decDigits; // число + точка + дробь
+
+          let val = parseFloat(entity.state || "0").toFixed(decDigits);
+          val = val.padStart(totalLength, '0');
+
           return val.split('').map(d => {
             if (d === '.') {
               return `<div class="meter-dot">.</div>`;
@@ -66,10 +71,10 @@ button_card_templates:
       .meter-digit, .meter-dot {
         background: #000;
         color: #e6e6e6;
-        width: var(--meter-width, 34px);
-        height: var(--meter-height, 50px);
+        width: var(--meter-width, 20px);
+        height: var(--meter-height, 30px);
         text-align: center;
-        line-height: var(--meter-height, 50px);
+        line-height: var(--meter-height, 30px);
         margin: 0 1px;
         border: 1px solid #555;
         border-radius: 4px;
