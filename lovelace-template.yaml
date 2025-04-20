@@ -54,9 +54,15 @@ button_card_templates:
         [[[
           const intDigits = Math.max(3, Math.min(6, parseInt(variables.int_digits || 6)));
           const decDigits = Math.max(1, Math.min(3, parseInt(variables.dec_digits || 3)));
-          const totalLength = intDigits + 1 + decDigits; // число + точка + дробь
+          const totalLength = intDigits + 1 + decDigits;
 
-          let val = parseFloat(entity.state || "0").toFixed(decDigits);
+          let raw = parseFloat(entity.state);
+          if (isNaN(raw)) {
+            return Array(totalLength).fill('?').map(c => 
+              `<div class="meter-digit">?</div>`).join('');
+          }
+
+          let val = raw.toFixed(decDigits);
           val = val.padStart(totalLength, '0');
 
           return val.split('').map(d => {
